@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReactPaginate from "react-paginate";
+import { Csv } from "../CSV/Csv";
 
 export const AmortizationTable = ({ data }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -123,7 +124,7 @@ export const AmortizationTable = ({ data }) => {
         pageRangeDisplayed={2}
       />
 
-      Export Data CSV
+    <Csv data={data}/>
     </div>
   );
 };
