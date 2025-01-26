@@ -4,7 +4,7 @@ import { Pie } from 'react-chartjs-2';
 
 Chart.register(ArcElement, Tooltip, Legend);
 
-export const MortgagePieChart = ({ data }) => {
+export const MortgagePieChart = ({ data, className}) => {
     const chartRef = useRef(null);
 
     // Calculate total monthly payment
@@ -69,8 +69,11 @@ export const MortgagePieChart = ({ data }) => {
     }, [data]);
 
     return (
-        <div style={{ width: '100%', height: 400, position: 'relative' }}>
-            <Pie ref={chartRef} data={chartData} options={chartOptions} />
+        <div style={{ width: '500px', height: 400, position: 'relative' }}>
+                <h2 className='text-5xl font-bold w-max'>Monthly payment breakdown
+                </h2>
+                <p className='text-gray-500 text-3xl font-bold mt-4'>Based on your data</p>
+            <Pie ref={chartRef} data={chartData} options={chartOptions} className={className} />
         </div>
     );
 };

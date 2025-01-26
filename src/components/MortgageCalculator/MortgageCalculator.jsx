@@ -20,29 +20,27 @@ export const MortgageCalculator = () => {
           <FormCalulation setChartData={setChartData} setTableData={setTableData}/>
         </div>
         <div className="md:col-span-8 xl:col-span-9 md:px-5">
-        <div className="button-group mt-4">
+        <div className="button-group mt-4 border-b-2 border-black  flex gap-4">
             <button
               onClick={() => handleViewChange('paymentBreakdown')}
-              className="mr-4 bg-blue-500 text-white py-2 px-4 rounded"
+                 className= {`px-4 py-3 transition-all hover:bg-indigo-600  hover:text-white ${view === "paymentBreakdown" ? '   bg-indigo-600  text-white' : ""}`}
             >
               Payment Breakdown
             </button>
             <button
               onClick={() => handleViewChange('amortizationTable')}
-              className="bg-green-500 text-white py-2 px-4 rounded"
+              className= {` px-4 py-3 hover:bg-indigo-600  hover:text-white${ view === "amortizationTable" ? 'px-4 bg-indigo-600  text-white' : "" }`}
             >
               Amortization Table
             </button>
           </div>
 
-          <div className="mt-6">
-            <div className="content">
+          <div className=" shadow-md py-5 px-8 h-full">
+            <div className="content flex items-end">
 
-            {view === 'paymentBreakdown' && chartData && <MortgagePieChart data={chartData} />}
-            </div>
-            {view === 'amortizationTable' && <AmortizationTable data = {tableData}/>}
-              </div>
-          <div className="content">
+            {view === 'paymentBreakdown' && chartData && 
+            <MortgagePieChart data={chartData} className = "text-left" />}
+             <div className="content flex-1">
             {chartData?.map((data, index) => (
               <div key={index} className="flex border-b border-gray-300">
                 <div className="w-1/2 p-4">{data.name}</div>
@@ -51,15 +49,12 @@ export const MortgageCalculator = () => {
                 </div>
               </div>
             ))}
-{/* 
-{chartData && (
-          <div className="chart-container">
-            <MortgagePieChart data={chartData} />
-          </div>
-        )} */}
-            {/* {<MortgagePieChart data={chartData} />} */}
 
           </div>
+            </div>
+            {view === 'amortizationTable' && <AmortizationTable data = {tableData}/>}
+              </div>
+         
         </div>
       </div>
     </section>
