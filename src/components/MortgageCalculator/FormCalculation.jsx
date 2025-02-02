@@ -1,37 +1,68 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FormField } from "./FormField/FormFieldWrapper.jsx";
 
 export const FormCalulation = ({ setChartData, setTableData }) => {
-  const [formData, setFormData] = useState({
-    MortgageAmount: null,
-    DownPayment: null,
-    LoanTerms: null,
-    InterestRate: null,
-    ExtraPaymentPerMonth: null,
-    ExtraPaymentPerYear: null,
+
+  // useEffect(() => {
+  //   const savedData = localStorage.getItem("mortgageFormData");
+  //   if (savedData) {
+  //     const parsedData = JSON.parse(savedData);
+  //     console.log("Loaded from localStorage:", parsedData);
+  //     // setFormData(parsedData);
+  //   }
+  // }, []);
+  const [formData, setFormData] = useState(() => {
+    const savedData = localStorage.getItem("mortgageFormData");
+    return savedData
+      ? JSON.parse(savedData)
+      : {
+          MortgageAmount: "200000",
+          DownPayment: "",
+          LoanTerms: "",
+          InterestRate: "",
+          ExtraPaymentPerMonth: "",
+          ExtraPaymentPerYear: "",
+        };
   });
 
+console.log("Initial formData state:", formData);
+
   const [open, setOpen] = useState(false);
+
+  // Save formData to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("mortgageFormData", JSON.stringify(formData));
+  }, [formData]);
+
   function handlePayment() {
     setOpen(!open);
   }
 
+  
   function handleChange(event) {
     const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value,
+    setFormData((prevFormData) => {
+      const updatedFormData = { ...prevFormData, [name]: value };
+      console.log("Updated formData:", updatedFormData);
+      return updatedFormData;
     });
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    localStorage.setItem("mortgageFormData", JSON.stringify(formData));
     console.log("Form Data Submitted:", formData); // Log the submitted data
 
-    const MortgageAmount = formData.MortgageAmount.replace(/,/g, "");
-    const DownPayment = formData.DownPayment.replace(/,/g, "");
-    const LoanTerms = formData.LoanTerms.replace(/,/g, "");
-    const InterestRate = formData.InterestRate.replace(/,/g, "");
+    const MortgageAmount = formData.MortgageAmount
+      ? parseFloat(formData.MortgageAmount.replace(/,/g, ""))
+      : 0;
+    const DownPayment = formData.DownPayment
+      ? parseFloat(formData.DownPayment.replace(/,/g, ""))
+      : 0;
+    const LoanTerms = formData.LoanTerms
+      ? parseFloat(formData.LoanTerms.replace(/,/g, ""))
+      : 0;
+    const InterestRate = formData.InterestRate ? parseFloat(formData.InterestRate.replace(/,/g, "")) : 0;
     const ExtraPaymentPerMonth = formData.ExtraPaymentPerMonth
       ? parseFloat(formData.ExtraPaymentPerMonth.replace(/,/g, ""))
       : 0;
@@ -122,28 +153,29 @@ export const FormCalulation = ({ setChartData, setTableData }) => {
           label="Home Amount"
           spanIcon="$"
           inputName="MortgageAmount"
-          value={formData.MortgageAmount}
+          value={formData.MortgageAmount ||  ""
+          }
           onChange={handleChange}
         />
         <FormField
           label="Down Payment"
           spanIcon="$"
           inputName="DownPayment"
-          value={formData.DownPayment}
+          value={formData.DownPayment ||  ""}
           onChange={handleChange}
         />
         <FormField
           label="Loan Terms"
           spanIcon="Years"
           inputName="LoanTerms"
-          value={formData.LoanTerms}
+          value={formData.LoanTerms ||  ""}
           onChange={handleChange}
         />
         <FormField
           label="Interest rate"
           spanIcon="%"
           inputName="InterestRate"
-          value={formData.InterestRate}
+          value={formData.InterestRate ||  ""}
           onChange={handleChange}
         />
 
@@ -179,7 +211,7 @@ export const FormCalulation = ({ setChartData, setTableData }) => {
                 label="Extra Payment Per Month"
                 spanIcon="$"
                 inputName="ExtraPaymentPerMonth"
-                value={formData.ExtraPaymentPerMonth}
+                value={formData.ExtraPaymentPerMonth || ""}
                 onChange={handleChange}
               />
 
@@ -187,7 +219,7 @@ export const FormCalulation = ({ setChartData, setTableData }) => {
                 label="Extra Payment Per Year"
                 spanIcon="$"
                 inputName="ExtraPaymentPerYear"
-                value={formData.ExtraPaymentPerYear}
+                value={formData.ExtraPaymentPerYear || ""}
                 onChange={handleChange}
               />
             </>
@@ -201,12 +233,6 @@ export const FormCalulation = ({ setChartData, setTableData }) => {
         >
           Update
         </button>
-
-        {/* {chartData && (
-          <div className="chart-container">
-            <MortgagePieChart data={chartData} />
-          </div>
-        )} */}
       </form>
     </>
   );
