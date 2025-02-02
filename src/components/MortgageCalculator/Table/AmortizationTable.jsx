@@ -43,10 +43,8 @@ export const AmortizationTable = ({ data }) => {
           </p>
         </div>
 
-        {
+        {}
 
-        }
-        
         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
           <table className="min-w-full divide-y divide-gray-300">
             <thead className="bg-gray-100">
@@ -124,7 +122,7 @@ export const AmortizationTable = ({ data }) => {
         pageRangeDisplayed={2}
       />
 
-    <Csv data={data}/>
+      <Csv data={data} />
     </div>
   );
 };

@@ -1,16 +1,8 @@
 import { useState, useEffect } from "react";
 import { FormField } from "./FormField/FormFieldWrapper.jsx";
 
-export const FormCalulation = ({ setChartData, setTableData }) => {
+export const FormCalulation = ({ setChartData, setTableData, onFormSubmit }) => {
 
-  // useEffect(() => {
-  //   const savedData = localStorage.getItem("mortgageFormData");
-  //   if (savedData) {
-  //     const parsedData = JSON.parse(savedData);
-  //     console.log("Loaded from localStorage:", parsedData);
-  //     // setFormData(parsedData);
-  //   }
-  // }, []);
   const [formData, setFormData] = useState(() => {
     const savedData = localStorage.getItem("mortgageFormData");
     return savedData
@@ -51,6 +43,7 @@ console.log("Initial formData state:", formData);
   const handleSubmit = (event) => {
     event.preventDefault();
     localStorage.setItem("mortgageFormData", JSON.stringify(formData));
+    onFormSubmit();
     console.log("Form Data Submitted:", formData); // Log the submitted data
 
     const MortgageAmount = formData.MortgageAmount
