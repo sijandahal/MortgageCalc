@@ -14,7 +14,7 @@ export const MortgageCalculator = () => {
 
   return (
     <section className="container m-auto py-8">
-      <h1 className="text-6xl font-bold">Mortgage Calculator</h1>
+      <h1 className="text-4xl font-bold tracking-tight  sm:text-8xl my-16 text-[#124E66]  ">Mortgage Calculator</h1>
       <div className="grid grid-cols-1 md:grid-cols-12 pt-0 md:pt-7 gap-6 xl:gap-8">
         <div className="md:col-span-4 xl:col-span-3 px-4 xl:px-0">
           <FormCalulation setChartData={setChartData} setTableData={setTableData}/>
@@ -23,13 +23,13 @@ export const MortgageCalculator = () => {
         <div className="button-group mt-4 border-b-2 border-black  flex gap-4">
             <button
               onClick={() => handleViewChange('paymentBreakdown')}
-                 className= {`px-4 py-3 transition-all hover:bg-indigo-600  hover:text-white ${view === "paymentBreakdown" ? '   bg-indigo-600  text-white' : ""}`}
+                 className= {`px-4 py-3 transition-all hover:bg-[#124E66]  hover:text-white ${view === "paymentBreakdown" ? '   bg-[#124E66]  text-white' : ""}`}
             >
               Payment Breakdown
             </button>
             <button
               onClick={() => handleViewChange('amortizationTable')}
-              className= {` px-4 py-3 hover:bg-indigo-600  hover:text-white${ view === "amortizationTable" ? 'px-4 bg-indigo-600  text-white' : "" }`}
+              className= {` px-4 py-3 hover:bg-[#124E66]  hover:text-white${ view === "amortizationTable" ? 'px-4 bg-[#124E66]  text-white' : "" }`}
             >
               Amortization Table
             </button>

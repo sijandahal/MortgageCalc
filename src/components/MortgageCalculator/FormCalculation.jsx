@@ -182,7 +182,7 @@ console.log("Initial formData state:", formData);
         <div className="button__wrapper my-10 ">
           <div
             onClick={handlePayment}
-            className="flex gap-3cursor-pointer items-center justify-center w-full font-bold text-indigo-600 hover:underline "
+            className="flex gap-3cursor-pointer items-center justify-center w-full font-bold text-[#124E66] hover:underline "
           >
             Add Extra Payments
             <span
@@ -192,7 +192,7 @@ console.log("Initial formData state:", formData);
                 class="w-6 h-6 text-gray-800 dark:text-white"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
-                fill="#4f46e5"
+                fill="#124E66"
                 viewBox="0 0 14 8"
               >
                 <path
@@ -229,7 +229,7 @@ console.log("Initial formData state:", formData);
         </div>
         <button
           type="submit"
-          className="relative z-0 w-full h-12 rounded-md bg-indigo-600  px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-md after:bg-indigo-600  hover:after:scale-x-125 hover:after:scale-y-150 hover:after:opacity-0 hover:after:transition hover:after:duration-500"
+          className="relative z-0 w-full h-12 rounded-md bg-[#124E66]  px-6 text-neutral-50 after:absolute after:left-0 after:top-0 after:-z-10 after:h-full after:w-full after:rounded-md after:bg-[#124E66]  hover:after:scale-x-125 hover:after:scale-y-150 hover:after:opacity-0 hover:after:transition hover:after:duration-500"
         >
           Update
         </button>

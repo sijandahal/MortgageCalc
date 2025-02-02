@@ -53,25 +53,25 @@ export const AmortizationTable = ({ data }) => {
               <tr>
                 <th
                   scope="col"
-                  className="py-3.5 pl-4 pr-3 text-left  font-semibold text-gray-900 sm:pl-3"
+                  className="py-3.5 pl-4 pr-3 text-left  font-semibold text-white sm:pl-3 bg-[#124E66] "
                 >
                   Date
                 </th>
                 <th
                   scope="col"
-                  className="py-3.5 pl-4 pr-3 text-left  font-semibold text-gray-900 sm:pl-3"
+                  className="py-3.5 pl-4 pr-3 text-left  font-semibold text-white sm:pl-3 bg-[#124E66]"
                 >
                   Principal Amount
                 </th>
                 <th
                   scope="col"
-                  className="py-3.5 pl-4 pr-3 text-left  font-semibold text-gray-900 sm:pl-3"
+                  className="py-3.5 pl-4 pr-3 text-left  font-semibold text-white sm:pl-3 bg-[#124E66]"
                 >
                   Interest
                 </th>
                 <th
                   scope="col"
-                  className="py-3.5 pl-4 pr-3 text-left  font-semibold text-gray-900 sm:pl-3"
+                  className="py-3.5 pl-4 pr-3 text-left  font-semibold text-white sm:pl-3 bg-[#124E66]"
                 >
                   Remaining Balance
                 </th>
@@ -113,10 +113,10 @@ export const AmortizationTable = ({ data }) => {
         pageCount={pageCount}
         onPageChange={handlePageClick}
         containerClassName="flex  mt-4 space-x-2 justify-end"
-        pageClassName="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
+        pageClassName="relative z-10 inline-flex items-center bg-[#124E66] px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
         pageLinkClassName="text-gray-700"
-        previousClassName="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
-        nextClassName="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
+        previousClassName="relative z-10 inline-flex items-center bg-[#124E66] px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
+        nextClassName="relative z-10 inline-flex items-center bg-[#124E66] px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 "
         disabledClassName="opacity-50 pointer-events-none"
         activeClassName="bg-blue-500 text-white"
         breakLabel={"..."}
