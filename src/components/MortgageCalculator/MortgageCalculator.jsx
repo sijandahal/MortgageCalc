@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { FormField } from "./FormField/FormFieldWrapper.jsx";
+import { useState, useEffect } from "react";
 import { FormCalulation } from "./FormCalculation.jsx";
 import { MortgagePieChart } from "./Chart/MortgagePieChart.jsx";
 import { AmortizationTable } from "./Table/AmortizationTable.jsx";
@@ -8,7 +7,15 @@ export const MortgageCalculator = () => {
   const [chartData, setChartData] = useState(null);
   const [tableData, setTableData] = useState(null);
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [showCompareMessage, setShowCompareMessage] = useState(false);
 
+  useEffect(() => {
+    // Check if this is a new tab
+    if (localStorage.getItem("isNewTab")) {
+      setShowCompareMessage(true);
+      localStorage.removeItem("isNewTab");
+    }
+  }, []);
   const handleViewChange = (viewType) => {
     setView(viewType);
   };
@@ -17,11 +24,23 @@ export const MortgageCalculator = () => {
     setFormSubmitted(true);
   };
 
+  const handleCompareAnotherMortgage = () => {
+    // Set a flag in localStorage to indicate the page was opened in a new tab
+    localStorage.setItem("isNewTab", "true");
+    window.open(window.location.href, "_blank");
+  };
+
   return (
     <section className="container m-auto py-8">
       <h1 className="text-4xl font-bold tracking-tight  sm:text-8xl my-16 text-[#124E66]  ">
         Mortgage Calculator
       </h1>
+
+      {showCompareMessage && (
+        <div className="bg-yellow-100 text-[#124E66] p-4 mb-4">
+          Please compare against your previous mortgage.
+        </div>
+      )}
       <div className="grid grid-cols-1 md:grid-cols-12 pt-0 md:pt-7 gap-6 xl:gap-8">
         <div className="md:col-span-4 xl:col-span-3 px-4 xl:px-0">
           <FormCalulation
@@ -29,6 +48,17 @@ export const MortgageCalculator = () => {
             setTableData={setTableData}
             onFormSubmit={handleFormSubmit}
           />
+          {
+            !showCompareMessage &&  (
+              <button
+            onClick={handleCompareAnotherMortgage}
+            className="your-button-class"
+          >
+            Compare Another Mortgage
+          </button>
+            )
+          }
+          
         </div>
         <div
           className={`md:col-span-8 xl:col-span-9 md:px-5 ${
