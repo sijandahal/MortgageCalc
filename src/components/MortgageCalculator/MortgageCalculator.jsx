@@ -32,9 +32,35 @@ export const MortgageCalculator = () => {
 
   return (
     <section className="container m-auto py-8">
-      <h1 className="text-4xl font-bold tracking-tight  sm:text-8xl my-16 text-[#124E66]  ">
-        Mortgage Calculator
-      </h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-4xl font-bold tracking-tight  sm:text-8xl my-16 text-[#124E66]  ">
+          Mortgage Calculator
+        </h1>
+        {!showCompareMessage && (
+          <>
+            {/* <button
+            onClick={handleCompareAnotherMortgage}
+            className="your-button-class"
+          >
+            Compare Another Mortgage
+          </button> */}
+            <button
+              onClick={handleCompareAnotherMortgage}
+              className="relative inline-block  group"
+            >
+              <span class="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-cyan-900 rounded-lg group-hover:text-white">
+                <span class="absolute inset-0 w-full h-full px-5 py-3 rounded-lg bg-gray-50"></span>
+                <span class="absolute left-0 w-48 h-48 -ml-2 transition-all duration-300 origin-top-right -rotate-90 -translate-x-full translate-y-12 bg-[#124E66]   group-hover:-rotate-180 group-hover:ml-0 group-hover:w-full ease"></span>
+                <span class="relative">Compare Another Mortgage</span>
+              </span>
+              <span
+                class="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-[#124E66]   rounded-lg group-hover:mb-0 group-hover:mr-0"
+                data-rounded="rounded-lg"
+              ></span>
+            </button>
+          </>
+        )}
+      </div>
 
       {showCompareMessage && (
         <div className="bg-yellow-100 text-[#124E66] p-4 mb-4">
@@ -48,17 +74,6 @@ export const MortgageCalculator = () => {
             setTableData={setTableData}
             onFormSubmit={handleFormSubmit}
           />
-          {
-            !showCompareMessage &&  (
-              <button
-            onClick={handleCompareAnotherMortgage}
-            className="your-button-class"
-          >
-            Compare Another Mortgage
-          </button>
-            )
-          }
-          
         </div>
         <div
           className={`md:col-span-8 xl:col-span-9 md:px-5 ${
