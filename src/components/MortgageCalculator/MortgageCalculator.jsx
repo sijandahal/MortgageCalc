@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { FormCalulation } from "./FormCalculation.jsx";
 import { MortgagePieChart } from "./Chart/MortgagePieChart.jsx";
 import { AmortizationTable } from "./Table/AmortizationTable.jsx";
+import { Profile } from "./Profile/Profile.jsx";
 export const MortgageCalculator = () => {
   const [view, setView] = useState(""); // State to control which view is displayed
   const [chartData, setChartData] = useState(null);
@@ -32,6 +33,7 @@ export const MortgageCalculator = () => {
 
   return (
     <section className="container m-auto py-8">
+      <Profile/>
       <div className="flex items-center justify-between">
         <h1 className="text-4xl font-bold tracking-tight  sm:text-8xl my-16 text-[#124E66]  ">
           Mortgage Calculator

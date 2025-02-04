@@ -104,7 +104,7 @@ console.log("Initial formData state:", formData);
           }),
           PrincipalAmount: remainingBalance.toFixed(2), // Remaining balance becomes the final principal
           InterestAmount: (remainingBalance * monthlyInterestRate).toFixed(2), // Interest on the remaining balance
-          "Remaining Balance": "0.00", // Explicitly set the remaining balance to 0
+          "Remaining Balance": "0.00", // set the remaining balance to 0
         });
         remainingBalance = 0; // Set remaining balance to 0 after adding the final row
         break; // Exit the loop
@@ -115,7 +115,7 @@ console.log("Initial formData state:", formData);
           year: "numeric",
           month: "long",
         }), // Format the date to show Year and Month
-        PrincipalAmount: principalAmount + ExtraPaymentPerMonth, // Include Extra Payment in the Principal
+        PrincipalAmount: principalAmount + ExtraPaymentPerMonth, //includes extra payment
         InterestRate: interest.toFixed(2),
         "Remaining Balance": remainingBalance.toFixed(3),
       });
