@@ -40,12 +40,7 @@ export const MortgageCalculator = () => {
         </h1>
         {!showCompareMessage && (
           <>
-            {/* <button
-            onClick={handleCompareAnotherMortgage}
-            className="your-button-class"
-          >
-            Compare Another Mortgage
-          </button> */}
+
             <button
               onClick={handleCompareAnotherMortgage}
               className="relative inline-block  group"

@@ -63,6 +63,9 @@ console.log("Initial formData state:", formData);
       ? parseFloat(formData.ExtraPaymentPerYear.replace(/,/g, ""))
       : 0;
 
+    let annualExtraPayment = ExtraPaymentPerYear / 12; // Convert yearly extra to monthly
+
+
     const currentDate = new Date(); // Get the current date
     let paymentDate = new Date(
       currentDate.getFullYear(),
@@ -89,41 +92,36 @@ console.log("Initial formData state:", formData);
     for (let i = 0; i < LoanTermsinMonths; i++) {
       const interest = remainingBalance * monthlyInterestRate;
       totalInterestPaid += interest;
-
+    
       let principalAmount = monthlyPayment - interest;
-
-      // Apply extra monthly payment
-      if (remainingBalance > principalAmount + ExtraPaymentPerMonth) {
-        remainingBalance -= principalAmount + ExtraPaymentPerMonth;
+    
+      // Apply extra monthly and yearly payments
+      let totalExtraPayment = ExtraPaymentPerMonth + annualExtraPayment;
+    
+      if (remainingBalance > principalAmount + totalExtraPayment) {
+        remainingBalance -= principalAmount + totalExtraPayment;
       } else {
-        // If the remaining balance is less than the total payment, handle the final month
+        // Handle final month if remaining balance is less than total payment
         scheduleTable.push({
-          Data: paymentDate.toLocaleDateString(undefined, {
-            year: "numeric",
-            month: "long",
-          }),
-          PrincipalAmount: remainingBalance.toFixed(2), // Remaining balance becomes the final principal
-          InterestAmount: (remainingBalance * monthlyInterestRate).toFixed(2), // Interest on the remaining balance
-          "Remaining Balance": "0.00", // set the remaining balance to 0
+          Data: paymentDate.toLocaleDateString(undefined, { year: "numeric", month: "long" }),
+          PrincipalAmount: remainingBalance.toFixed(2),
+          InterestAmount: (remainingBalance * monthlyInterestRate).toFixed(2),
+          "Remaining Balance": "0.00",
         });
-        remainingBalance = 0; // Set remaining balance to 0 after adding the final row
-        break; // Exit the loop
+        remainingBalance = 0;
+        break;
       }
-
+    
       scheduleTable.push({
-        Data: paymentDate.toLocaleDateString(undefined, {
-          year: "numeric",
-          month: "long",
-        }), // Format the date to show Year and Month
-        PrincipalAmount: principalAmount + ExtraPaymentPerMonth, //includes extra payment
+        Data: paymentDate.toLocaleDateString(undefined, { year: "numeric", month: "long" }),
+        PrincipalAmount: (principalAmount + totalExtraPayment).toFixed(2),
         InterestRate: interest.toFixed(2),
         "Remaining Balance": remainingBalance.toFixed(3),
       });
-
-      // Increment the payment date to the next month for the next row
+    
+      // Move to the next month
       paymentDate.setMonth(paymentDate.getMonth() + 1);
     }
-
     // Calculate total payment over the loan term
     const totalMortgagePayment = monthlyPayment * LoanTermsinMonths;
 
